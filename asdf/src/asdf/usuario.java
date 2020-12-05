@@ -3,7 +3,7 @@ package asdf;
 
 public class usuario {
     
-    private  String user;
+     String user;
     private  String password;
 
 

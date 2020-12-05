@@ -10,7 +10,9 @@ public class menu extends javax.swing.JFrame {
 static String inputNombre;
 static String inputContraseña;
 static int i=1;
+static int o=0;
 static usuario UserInfo[]=new usuario[100];
+private String [][] UserI=new String[100][2];
 
     public  JPasswordField getPasswordAsk() {
         return passwordAsk;
@@ -24,6 +26,14 @@ static usuario UserInfo[]=new usuario[100];
     
     
     public menu() {
+        UserI[0][0]=("prueba");
+        UserI[0][1]=("prueba");
+          for(int a=1;a<100;a++){
+      for(int b=0;b<2;b++){
+          String u="01927408327804732842379804723948rf79sf87s9f8aysfadñ";
+        UserI[a][b]=(u);
+      }
+          }
         initComponents();
     }
 
@@ -118,37 +128,24 @@ static usuario UserInfo[]=new usuario[100];
        
        //encargado del manejo de registro
        //se pide nombre y contraseña
-       inputNombre=JOptionPane.showInputDialog("Digita tu nuevo usuario: ");
-       inputContraseña=JOptionPane.showInputDialog("Digita tu nueva contraseña: ");
+       inputNombre=JOptionPane.showInputDialog(rootPane,"Digita tu nuevo usuario: ");
+       inputContraseña=JOptionPane.showInputDialog(rootPane,"Digita tu nueva contraseña: ");
        //verificacion de contraseñas o nombres invalidos
         if(" ".equals(inputNombre)|"".equals(inputNombre)|" ".equals(inputContraseña)|"".equals(inputContraseña)){
-                JOptionPane.showMessageDialog(null, "ERROR!\nNo puede ingresar un usuario o\ncontraseña vacios!");
+                JOptionPane.showMessageDialog(rootPane, "ERROR!\nNo puede ingresar un usuario o\ncontraseña vacios!");
                    
        }else{
            //en caso de ser nombre y contraseña validos, se pasa a verificar que sean nombres no utilizados aún
-           //declaracion de variable reg para control
-            int p=1;
-            boolean continuar=true;
-            
-            
-            
-            
-            
-            
-            
-            
-           do{
-               if(inputNombre==UserInfo[p].getUser()){
-               JOptionPane.showMessageDialog(null, "ERROR!\nEl usuario ya está registrado!");
-               p=100;
-               continuar=false;
-               }
-               p=p+1;
-           }while(99>=p);
-           if(continuar!=false){
-           registrar();
-           
-           }
+           int cont=0;
+            for (int p=0;p<100;p++){
+                if(UserI[p][0].equals(inputNombre)){
+                JOptionPane.showMessageDialog(rootPane,"ERROR!\nEL USUARIO YA ESTÁ REGISTRADO!");
+                cont=1;
+                }
+            }
+            if(cont==0){
+            registrar();
+            }
            
            
        }  
@@ -200,7 +197,25 @@ static usuario UserInfo[]=new usuario[100];
     // End of variables declaration//GEN-END:variables
 
 public void iniciar(){
+    int entrar=0;
+    
+    
+ for (int p=0;p<100;p++){
+    
+          if(UserI[p][0].equals(inputNombre)&&UserI[p][1].equals(inputContraseña)){
+              JOptionPane.showMessageDialog(rootPane, "INICIO DE SESION EXITOSO!");
+              menu2 abrir2=new menu2();
+              abrir2.setVisible(true);
+              this.setVisible(false);
+              entrar=1;
+  }
+      
+ }
 
+ if(entrar==0){
+  JOptionPane.showMessageDialog(rootPane, "USUARIO NO REGISTRADO O USUARIO O CONTRASEÑA INCORRECTOS");  
+
+ }
     
     
     
@@ -208,27 +223,12 @@ public void iniciar(){
 }
 
 public void registrar(){
-    
-    boolean ini=true;
-    if(ini=true){
-            //inicializacion de 99 arreglos de nombre UserInfo
-        UserInfo[1]=new usuario("a","a");
-        for(int p=1;p==99;p++){
-        UserInfo[p]=new usuario("aaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaaaa");
-        }
-        ini=false;
-    
-    }
-    
-    
-    
-    
-    
-    
-    
-UserInfo[i]=new usuario(inputNombre, inputContraseña);
+UserI[i][o]=(inputNombre);
+o=o+1;
+UserI[i][o]=(inputContraseña);
+o=0;
 i=i+1;
-JOptionPane.showMessageDialog(null, "Registro exitoso!\nAhora vuelve a iniciar sesion!");
+JOptionPane.showMessageDialog(rootPane, "Registro exitoso!\nAhora vuelve a iniciar sesion!");
 
 }
 
