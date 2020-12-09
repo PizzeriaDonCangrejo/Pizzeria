@@ -7,11 +7,10 @@ import javax.swing.JTextField;
 
 public class menu extends javax.swing.JFrame {
 //declaracion de variables y arreglo de usuarios
-static String inputNombre;
-static String inputContraseña;
-static int i=1;
-static int o=0;
-static usuario UserInfo[]=new usuario[100];
+private static String inputNombre;
+private static String inputContraseña;
+private static int i=1;
+private static int o=0;
 private String [][] UserI=new String[100][2];
 
     public  JPasswordField getPasswordAsk() {
@@ -26,11 +25,14 @@ private String [][] UserI=new String[100][2];
     
     
     public menu() {
-        UserI[0][0]=("prueba");
-        UserI[0][1]=("prueba");
+        //declaracion de usuario de control
+        UserI[0][0]=("123");
+        UserI[0][1]=("123");
+        
+        //Declaracion de los 99 usuarios sin registrar
           for(int a=1;a<100;a++){
       for(int b=0;b<2;b++){
-          String u="01927408327804732842379804723948rf79sf87s9f8aysfadñ";
+          String u="  nada &$%&)($        ";
         UserI[a][b]=(u);
       }
           }
@@ -93,7 +95,7 @@ private String [][] UserI=new String[100][2];
             }
         });
         getContentPane().add(registrar);
-        registrar.setBounds(230, 540, 100, 23);
+        registrar.setBounds(230, 540, 100, 32);
 
         imagenMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Inicio_de_seccion_listo.png"))); // NOI18N
         imagenMenu.setText("jLabel1");
@@ -143,6 +145,7 @@ private String [][] UserI=new String[100][2];
                 cont=1;
                 }
             }
+            //llamada al metodo registrar
             if(cont==0){
             registrar();
             }
@@ -180,8 +183,7 @@ private String [][] UserI=new String[100][2];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
-                new menu().setVisible(true);
+                opener.abrir1();
             }
         });
     }
@@ -197,16 +199,16 @@ private String [][] UserI=new String[100][2];
     // End of variables declaration//GEN-END:variables
 
 public void iniciar(){
+   //entrar es variable de control para notificar al usuario sobre un error
     int entrar=0;
     
-    
+    //for dedicado al acceso por usuario y contraseña
  for (int p=0;p<100;p++){
     
           if(UserI[p][0].equals(inputNombre)&&UserI[p][1].equals(inputContraseña)){
               JOptionPane.showMessageDialog(rootPane, "INICIO DE SESION EXITOSO!");
-              menu2 abrir2=new menu2();
-              abrir2.setVisible(true);
               this.setVisible(false);
+              opener.abrir2();
               entrar=1;
   }
       
@@ -216,13 +218,11 @@ public void iniciar(){
   JOptionPane.showMessageDialog(rootPane, "USUARIO NO REGISTRADO O USUARIO O CONTRASEÑA INCORRECTOS");  
 
  }
-    
-    
-    
-    
+
 }
 
 public void registrar(){
+    //metodo encargado de ingresar en el arreglo de usuario los datos dados
 UserI[i][o]=(inputNombre);
 o=o+1;
 UserI[i][o]=(inputContraseña);

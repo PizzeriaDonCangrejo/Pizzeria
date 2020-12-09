@@ -1,16 +1,18 @@
 
 package asdf;
 
-/**
- *
- * @author jua
- */
-public class menu2 extends javax.swing.JFrame {
+import javax.swing.JOptionPane;
 
+
+//Esta clase se encarga de definir si el usuario desea llevar o comer en el lugar
+public class menu2 extends javax.swing.JFrame {
+ 
+    private static String ped;
     /**
      * Creates new form menu2
      */
     public menu2() {
+        
         initComponents();
     }
 
@@ -23,33 +25,63 @@ public class menu2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        llevar = new javax.swing.JLabel();
+        restaurante = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(580, 640));
+        setMaximumSize(new java.awt.Dimension(700, 700));
+        setMinimumSize(new java.awt.Dimension(620, 625));
+        setPreferredSize(new java.awt.Dimension(600, 600));
         getContentPane().setLayout(null);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        llevar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                llevarMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(40, 30, 77, 32);
+        getContentPane().add(llevar);
+        llevar.setBounds(140, 40, 350, 240);
 
-        jButton2.setText("jButton2");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(140, 30, 77, 32);
+        restaurante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restauranteMouseClicked(evt);
+            }
+        });
+        getContentPane().add(restaurante);
+        restaurante.setBounds(140, 320, 350, 240);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cuadro_2.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 600, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void llevarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_llevarMouseClicked
+       //metodo encargado de definir la condicion de llevar
+        ped="llevar";
+        pedido.llevarO();
+        opener.abrirPedir();
+        this.setVisible(false);       
+    }//GEN-LAST:event_llevarMouseClicked
 
+    private void restauranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restauranteMouseClicked
+        //metodo encargado de definir la condicion de comer en el lugar
+        ped="restaurante";
+        pedido.llevarO();
+        opener.abrirPedir();
+        this.setVisible(false); 
+        
+    }//GEN-LAST:event_restauranteMouseClicked
+     
+    public static String getped() {
+        //metodo get encargado de devolver la condicion del pedido
+        return ped;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -80,13 +112,14 @@ public class menu2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new menu2().setVisible(true);
+               opener.abrir2();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel llevar;
+    private javax.swing.JLabel restaurante;
     // End of variables declaration//GEN-END:variables
 }
